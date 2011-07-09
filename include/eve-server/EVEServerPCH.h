@@ -308,6 +308,10 @@
 #include "imageserver/ImageServerConnection.h"
 #include "imageserver/ImageServerListener.h"
 
+#include "apiserver/APIServer.h"
+#include "apiserver/APIServerConnection.h"
+#include "apiserver/APIServerListener.h"
+
 #include "LiveUpdateDB.h"
 
 #endif//__EVE_SERVER_PCH_H__INCL__

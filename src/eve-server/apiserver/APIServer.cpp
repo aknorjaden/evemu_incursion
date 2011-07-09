@@ -130,14 +130,14 @@ std::tr1::shared_ptr<std::vector<char>> APIServer::GetXML(std::string& category,
 	//int length = stream.tellg();
 	//stream.seekg(0, std::ios::beg);
 
-	std::tr1::shared_ptr<std::vector<char>> ret = std::tr1::shared_ptr<std::vector<char>>(new std::vector<char>());
-	ret->resize(length);
+	//std::tr1::shared_ptr<std::vector<char>> ret = std::tr1::shared_ptr<std::vector<char>>(new std::vector<char>());
+	//ret->resize(length);
 
 	// HACK
 	//stream.read(&((*ret)[0]), length);
-    fread(&((*ret)[0]), 1, length, fp);
+    //fread(&((*ret)[0]), 1, length, fp);
 
-	return ret;
+	return NULL;//ret;
 }
 
 /*

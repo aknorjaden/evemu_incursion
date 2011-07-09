@@ -26,7 +26,7 @@
 #ifndef __EVE_VERSION_H
 #define __EVE_VERSION_H
 
-// supported client is Incursion build 247655
+// supported client is Incursion v1.6 build 264377
 
 static const uint16 MachoNetVersion = 271;
 static const double EVEVersionNumber = 6.45;

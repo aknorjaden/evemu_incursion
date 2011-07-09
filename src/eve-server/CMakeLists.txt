@@ -74,6 +74,16 @@ SET( admin_SOURCE
      "${TARGET_SOURCE_DIR}/admin/PetitionerService.cpp"
      "${TARGET_SOURCE_DIR}/admin/SlashService.cpp" )
 
+SET( apiserver_INCLUDE
+     "${TARGET_INCLUDE_DIR}/apiserver/APIServer.h"
+     "${TARGET_INCLUDE_DIR}/apiserver/APIServerListener.h"
+     "${TARGET_INCLUDE_DIR}/apiserver/APIServerConnection.h" )
+
+SET( apiserver_SOURCE
+     "${TARGET_SOURCE_DIR}/apiserver/APIServer.cpp"
+     "${TARGET_SOURCE_DIR}/apiserver/APIServerListener.cpp"
+     "${TARGET_SOURCE_DIR}/apiserver/APIServerConnection.cpp" )
+
 SET( authorisation_INCLUDE
      "${TARGET_INCLUDE_DIR}/authorisation/BinAsciiModule.h"
      "${TARGET_INCLUDE_DIR}/authorisation/PasswordModule.h"
@@ -322,7 +332,7 @@ SET( standing_SOURCE
      "${TARGET_SOURCE_DIR}/standing/StandingDB.cpp"
      "${TARGET_SOURCE_DIR}/standing/WarRegistryService.cpp" )
 
-SET( station_INCLDUDE
+SET( station_INCLUDE
      "${TARGET_INCLUDE_DIR}/station/JumpCloneService.h"
      "${TARGET_INCLUDE_DIR}/station/Station.h"
      "${TARGET_INCLUDE_DIR}/station/StationDB.h"
@@ -411,6 +421,7 @@ INCLUDE_DIRECTORIES( "${TARGET_INCLUDE_DIR}" )
 SOURCE_GROUP( "include"                FILES ${INCLUDE} )
 SOURCE_GROUP( "include\\account"       FILES ${account_INCLUDE} )
 SOURCE_GROUP( "include\\admin"         FILES ${admin_INCLUDE} )
+SOURCE_GROUP( "include\\apiserver"     FILES ${apiserver_INCLUDE} )
 SOURCE_GROUP( "include\\authorisation" FILES ${authorisation_INCLUDE} )
 SOURCE_GROUP( "include\\browser"       FILES ${browser_INCLUDE} )
 SOURCE_GROUP( "include\\cache"         FILES ${cache_INCLUDE} )
@@ -441,6 +452,7 @@ SOURCE_GROUP( "include\\imageserver"   FILES ${imageserver_INCLUDE} )
 SOURCE_GROUP( "src"                FILES ${SOURCE} )
 SOURCE_GROUP( "src\\account"       FILES ${account_SOURCE} )
 SOURCE_GROUP( "src\\admin"         FILES ${admin_SOURCE} )
+SOURCE_GROUP( "src\\apiserver"     FILES ${apiserver_SOURCE} )
 SOURCE_GROUP( "src\\authorisation" FILES ${authorisation_SOURCE} )
 SOURCE_GROUP( "src\\browser"       FILES ${browser_SOURCE} )
 SOURCE_GROUP( "src\\cache"         FILES ${cache_SOURCE} )
@@ -472,6 +484,7 @@ ADD_EXECUTABLE( "${TARGET_NAME}"
                 ${INCLUDE}                ${SOURCE}
                 ${account_INCLUDE}        ${account_SOURCE}
                 ${admin_INCLUDE}          ${admin_SOURCE}
+                ${apiserver_INCLUDE}      ${apiserver_SOURCE}
                 ${authorisation_INCLUDE}  ${authorisation_SOURCE} 
                 ${browser_INCLUDE}        ${browser_SOURCE} 
                 ${cache_INCLUDE}          ${cache_SOURCE}

@@ -202,6 +202,9 @@ int main( int argc, char* argv[] )
 	// start up the image server
 	ImageServer::get().Run();
 
+    // start up the api sever
+    APIServer::get().Run();
+
     services.serviceDB().SetServerOnlineStatus(true);
 
     sLog.Log("server init", "Init done.");
