@@ -25,7 +25,10 @@
 
 #include "EVEServerPCH.h"
 
-asio::const_buffers_1 APIServerConnection::_responseOK = asio::buffer("HTTP/1.0 200 OK\r\nContent-Type: text/xml\r\n\r\n", 45);
+asio::const_buffers_1 APIServerConnection::_responseOK = asio::buffer("HTTP/1.0 200 OK\r\nContent-Type: text/xml\r\n\r\n", 43);
+                                                        // The last parameter must be exactly the # of chars in the string, otherwise
+                                                        // a browser will not recognize the xml structure and think the document is empty
+                                                        // if the size is larger than this string.
 asio::const_buffers_1 APIServerConnection::_responseNotFound = asio::buffer("HTTP/1.0 404 Not Found\r\n\r\n", 26);
 asio::const_buffers_1 APIServerConnection::_responseRedirectBegin = asio::buffer("HTTP/1.0 301 Moved Permanently\r\nLocation: ", 42);
 asio::const_buffers_1 APIServerConnection::_responseRedirectEnd = asio::buffer("\r\n\r\n", 4);
@@ -85,7 +88,8 @@ void APIServerConnection::ProcessHeaders()
 	}
 	request = request.substr(1);
 
-	int del = request.find_first_of('_');
+    // Find first space at end of header, if there is one, and strip off the rest of the line:
+	int del = request.find_first_of(' ');
 	if (del == std::string::npos)
 	{
 		NotFound();

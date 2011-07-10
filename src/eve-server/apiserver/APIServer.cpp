@@ -137,7 +137,40 @@ std::tr1::shared_ptr<std::vector<char>> APIServer::GetXML(std::string& category,
 	//stream.read(&((*ret)[0]), length);
     //fread(&((*ret)[0]), 1, length, fp);
 
-	return NULL;//ret;
+    TiXmlDocument retXml;
+    TiXmlDeclaration * decl = new TiXmlDeclaration( "1.0", "UTF-8", "" );
+    retXml.LinkEndChild( decl );
+
+    TiXmlElement * eveapi = new TiXmlElement( "eveapi" );
+    retXml.LinkEndChild( eveapi );
+    eveapi->SetAttribute( "version", "2" );
+
+    TiXmlElement * currentTime = new TiXmlElement( "currentTime" );
+    currentTime->LinkEndChild( new TiXmlText( "2011-07-09 23:58:10" ));
+    eveapi->LinkEndChild( currentTime );
+
+    TiXmlElement * error = new TiXmlElement( "error" );
+    error->SetAttribute( "code", "203" );
+    error->LinkEndChild( new TiXmlText( "Authentication failure." ));
+    eveapi->LinkEndChild( error );
+
+    TiXmlElement * cachedUntil = new TiXmlElement( "cachedUntil" );
+    cachedUntil->LinkEndChild( new TiXmlText( "2011-07-10 00:05:10" ));
+    eveapi->LinkEndChild( cachedUntil );
+
+    TiXmlPrinter xmlPrinter;
+    retXml.Accept( &xmlPrinter );
+
+    std::string xmlString = xmlPrinter.CStr();
+
+    // TODO: I need to get this std::string xmlString into a std::vector<char>
+	std::tr1::shared_ptr<std::vector<char>> ret = std::tr1::shared_ptr<std::vector<char>>(new std::vector<char>());
+	//ret->resize(xmlString.length());
+    unsigned long len = xmlString.length();
+    for(int i=0; i<xmlString.length(); i++)
+        ret->push_back(xmlString.at(i));
+
+	return ret;
 }
 
 /*
