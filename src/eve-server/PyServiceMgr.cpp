@@ -73,7 +73,12 @@ PyService *PyServiceMgr::LookupService(const std::string &name) {
 	end = m_services.end();
 	for(; cur != end; cur++) {
 		if(name == (*cur)->GetName())
+		{
+			//this is added here so you know which server opens the call
+			//that if it gets loaded
+			sLog.Debug("ServiceOfIterest", (*cur)->GetName());
 			return(*cur);
+		}
 	}
 	return NULL;
 }

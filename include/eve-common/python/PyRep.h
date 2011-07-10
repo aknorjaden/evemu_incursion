@@ -106,11 +106,14 @@ public:
 
     bool IsInt() const
     {
+#ifdef WIN32
         /* crash when we missed a convertion... lol */
         if (mType == PyTypeLong)
             __asm{int 3};
+#endif//WIN32
         return mType == PyTypeInt;
     }
+
     bool IsLong() const             { return mType == PyTypeLong; }
     bool IsFloat() const            { return mType == PyTypeFloat; }
     bool IsBool() const             { return mType == PyTypeBool; }
@@ -1010,6 +1013,7 @@ PyTuple * new_tuple(const char* arg1, const char* arg2, const char* arg3);
 PyTuple * new_tuple(const char* arg1, const char* arg2, PyTuple* arg3);
 /* mixed */
 PyTuple * new_tuple(const char* arg1, PyRep* arg2, PyRep* arg3);
+PyTuple * new_tuple(PyRep* arg1);
 PyTuple * new_tuple(PyRep* arg1, PyRep* arg2);
 
 #endif//EVE_PY_REP_H

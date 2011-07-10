@@ -976,7 +976,6 @@ PyChecksumedStream::PyChecksumedStream( PyRep* t, uint32 sum ) : PyRep( PyRep::P
 //PyChecksumedStream::PyChecksumedStream( const PyChecksumedStream& oth ) : PyRep( PyRep::PyTypeChecksumedStream ), mStream( oth.stream()->Clone() ), mChecksum( oth.checksum() ) {}
 PyChecksumedStream::~PyChecksumedStream()
 {
-    
     PyDecRef( mStream );
 }
 
@@ -1060,5 +1059,12 @@ PyTuple * new_tuple( PyRep* arg1, PyRep* arg2 )
     PyTuple * res = new PyTuple(2);
     res->SetItem(0, arg1);
     res->SetItem(1, arg2);
+    return res;
+}
+
+PyTuple * new_tuple( PyRep* arg1 )
+{
+    PyTuple * res = new PyTuple(1);
+    res->SetItem(0, arg1);
     return res;
 }
